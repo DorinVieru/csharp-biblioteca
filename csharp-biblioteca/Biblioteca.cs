@@ -37,6 +37,29 @@ namespace csharp_biblioteca
             Prestiti.Add(prestito);
         }
 
-        
+        // FUNZIONE PER RICERCARE UN UTENTE
+        public Utente RicercaUtente(string nome, string cognome)
+        {
+            return Utenti.FirstOrDefault(u => u.Nome == nome && u.Cognome == cognome);
+        }
+
+        // FUNZIONE PER RICERCARE UN DOCUMENTO PER CODICE
+        public Documenti RicercaDocumentoCod(string codice)
+        {
+            return Documenti.FirstOrDefault(d => d.Codice == codice);
+        }
+
+        // FUNZIONE PER RICERCARE UN DOCUMENTO PER TITOLO
+        public Documenti RicercaDocumentoTitolo(string titolo)
+        {
+            return Documenti.FirstOrDefault(d => d.Titolo == titolo);
+        }
+
+        // FUNZIONE PER RICERCARE UN PRESTITO PER NOME E COGNOME UTENTE
+        public List<Prestito> RicercaPrestitiPerUtente(string nome, string cognome)
+        {
+            var utente = RicercaUtente(nome, cognome);
+            return Prestiti.Where(p => p.Utente == utente).ToList();
+        }
     }
 }
