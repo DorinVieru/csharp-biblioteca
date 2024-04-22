@@ -60,7 +60,28 @@ namespace csharp_biblioteca
         }
     }
 
-    
+    // SOTTOCLASSE PER I DVD
+    public class DVD : Documenti
+    {
+        public int Durata { get; set; } // Durata in minuti
+
+        public DVD(string codice, string titolo, int anno, string settore, string scaffale, string autore, int durata)
+            : base(codice, titolo, anno, settore, scaffale, autore)
+        {
+            Durata = durata;
+        }
+
+        public override void Prestito()
+        {
+            base.Prestito();
+            Console.WriteLine($"DVD: '{Titolo}', Durata: {Durata} minuti, anno {Anno}, codice identificativo {Codice}, settore {Settore} e scaffale {Scaffale}.");
+        }
+
+        public override void Ritorno()
+        {
+            base.Ritorno();
+            Console.WriteLine($"DVD: '{Titolo}', Durata: {Durata} minuti, anno {Anno}, codice identificativo {Codice}, settore {Settore} e scaffale {Scaffale}.");
+        }
     }
 
 }
