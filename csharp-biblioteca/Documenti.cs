@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp_biblioteca
 {
-    internal class Documenti
+    public class Documenti
     {
         public string Codice { get; set; }
         public string Titolo { get; set; }
@@ -34,8 +34,33 @@ namespace csharp_biblioteca
         {
             Console.WriteLine($"'{Titolo}' è stato restituito.");
         }
+    }
 
-       
+    // SOTTOCLASSE PER I LIBRI
+    public class Libro : Documenti
+    {
+        public int NumeroPagine { get; set; }
+
+        public Libro(string codice, string titolo, int anno, string settore, string scaffale, string autore, int numeroPagine)
+            : base(codice, titolo, anno, settore, scaffale, autore)
+        {
+            NumeroPagine = numeroPagine;
+        }
+
+        public override void Prestito()
+        {
+            base.Prestito();
+            Console.WriteLine($"Libro: '{Titolo}' di {Autore}, {NumeroPagine} pagine, anno {Anno}, codice identificativo {Codice}, settore {Settore} e scaffale {Scaffale}.");
+        }
+
+        public override void Ritorno()
+        {
+            base.Ritorno();
+            Console.WriteLine($"Libro: '{Titolo}' di {Autore}, {NumeroPagine} pagine, anno {Anno}, codice identificativo {Codice}, settore {Settore} e scaffale {Scaffale}.");
+        }
+    }
+
+    
     }
 
 }
