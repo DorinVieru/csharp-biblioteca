@@ -39,7 +39,7 @@ namespace csharp_biblioteca
             }
             else
             {
-                Console.WriteLine("\nRISULTATI RICERCA \nHai effettuato una ricerca per un libro, ma non ho trovato nulla nel mio catalogo.");
+                Console.WriteLine("\nRISULTATI RICERCA \nHai effettuato una ricerca per il libro Il Signore degli Anelli, ma non ho trovato nulla nel mio catalogo.");
             }
 
             // Prestito di un documento
@@ -53,7 +53,12 @@ namespace csharp_biblioteca
             biblioteca.AggiungiPrestito(prestito);
             Console.WriteLine($"\nNUOVO PRESTITO \nNuovo prestito registrato: {prestito.Utente.Nome} {prestito.Utente.Cognome} per {prestito.Documento.Titolo}, in data {prestito.DataInizio}. Terminerà il {prestito.DataFine}");
 
-            
+            // Ricerca dei prestiti per un utente
+            List<Prestito> prestitiUtente = biblioteca.RicercaPrestitiPerUtente("Dorin", "Bot");
+            foreach (var prest in prestitiUtente)
+            {
+                Console.WriteLine($"\nRICERCA PRESTITO PER NOME E COGNOME UTENTE \nRisultato ricerca prestito: {prest.Utente.Nome} {prest.Utente.Cognome} per {prest.Documento.Titolo} ({prest.DataInizio.ToShortDateString()} - {prest.DataFine.ToShortDateString()})");
+            }
         }
     }
 }
